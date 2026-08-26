@@ -1,6 +1,6 @@
 ---
 title: "CS-201 First Look at R"
-author: "Amber Camp"
+author: "Kent Maramba"
 date: 8/26/26
 format: html
 editor: visual
@@ -40,10 +40,37 @@ I don't recommend rearranging your pane layout at this time.
 
 Try running some code
 
-```{r}
+Load Library
 
+```{r}
+library(ggplot2)
 
 ```
+
+Some Scripting
+
+```{r}
+# this is a comment 
+quiz1 <- 88 #this is how to assign a value to a name, also command option i
+quiz2 <- 94
+quiz3 <- 79
+
+quiz1
+
+#average
+(quiz1 + quiz2 + quiz3) / 3
+
+mean(quiz1, quiz2, quiz3) #not correct justs add everything up
+mean(quiz1 + quiz2 + quiz3) #not correct only returns 1st argument
+
+mean(c(quiz1,quiz2, quiz3))
+
+list <- c(quiz1, quiz2, quiz3)
+barplot(scores, name.arg)
+
+```
+
+\
 
 ## Introducing `ggplot2`
 
