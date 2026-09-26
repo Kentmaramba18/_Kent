@@ -1,7 +1,7 @@
 ---
 title: "Assignment 4: Exploratory Data Analysis"
-author: "Your Name"
-date: "`r Sys.Date()`"
+author: "Kent Maramba"
+date: "`09/25/2026`"
 format: html
 editor: visual
 ---
@@ -48,7 +48,7 @@ Description: This data set contains information about restaurant transactions, i
 Use some of the strategies you've learned in this class or picked up elsewhere to summarize and quickly explore your data.
 
 ```{r}
-
+summary(mydata)
 ```
 
 ### Summary stats
@@ -76,7 +76,7 @@ max(mydata$total_bill)
 
 Write 2–3 sentences here: What do the category counts tell you? What does the numeric summary show about spread, center, or outliers?
 
-As of right now, for the counts, im assuming majority of the data recorded is being recorded from the person paying for the bill. For example, for size i would represents the amount of people in the party but the sex shows male/female of the person paying the bill. Numerical, the bill shows no more that 51 dollars and no less than 3.
+Based on the category count, there are more males than female customers recorded paying the bill. The average bill was about \$19.79 while the median was \$17.80 with the bills ranging from \$3.07-\$50.81. Standard deviation is 8.90 meaning the bills had noticeable amount of variation.
 
 Part 2: Visualize Your Data
 
@@ -96,45 +96,52 @@ Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, you
 
 ```{r}
 # insert code here
-
+ggplot(mydata, aes(x=day))+
+  geom_bar()
 ```
 
-Question this plot answers:
+Question this plot answers: Which days had the most records of bills?
 
-Interpretation:
+Interpretation: From this bar graph, I see that Saturday, Sunday(weekends) and Thursdays had the most bills. Fri being the lowest recorded. Rest of the weekdays had no records of service.
 
 ### Plot 2
 
 ```{r}
 # insert code here
-
+ggplot(mydata, aes(x= total_bill, y = tip))+
+  geom_point()
 ```
 
-Question this plot answers:
+Question this plot answers: Do people with high bill totals leave higher tips?
 
-Interpretation:
+Interpretation: the scatter plot shows that as the bill increases, generally the tip does too increase but the points are spread out. Also, there are a lot of bills with less that \$30.
 
 ### Plot 3
 
 ```{r}
 # insert code here
-
+ggplot(mydata, aes(x=total_bill,))+
+  geom_histogram()+
+  labs(title = "Distribution of Total Bills", x= "total bills($)", y= "Amount of Bills")
 ```
 
-Question this plot answers:
+Question this plot answers: What range of total bill amounts is most common?
 
-Interpretation:
+Interpretation: Majority of the bills recorded fall in the \$10-\$25 range.
 
 ### Plot 4
 
 ```{r}
 # insert code here
-
+ggplot(mydata, aes(x=smoker, y=tip))+
+  geom_boxplot()
 ```
 
-Question this plot answers:
+Question this plot answers: Do smokers and non-smokers tip differently?
 
 Interpretation:
+
+Smokers and non-smokers generally had similar tips with the smokers having a slight upperhand with comes to high tips. Because its so close I would not claim they do because of the similarity. However both groups also have unusual high tips as outliers.
 
 ------------------------------------------------------------------------
 
