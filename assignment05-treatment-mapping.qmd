@@ -10,7 +10,7 @@ toc: true
 
 ## Overview
 
-Due: **Friday 10/2, 11:59pm**
+Due: **Friday 10/2, 11:59pm.**
 
 In this assignment, you will apply analytic and mapping skills to the 2024 TEDS-D dataset from SAMHSA.
 
