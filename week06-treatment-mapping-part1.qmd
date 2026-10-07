@@ -15,11 +15,11 @@ If you don't have the below packages, run the relevant lines here:
 
 # we'll use all of these this week, but selectively load a few today
 
-install.packages("sf")
-install.packages("remotes") # used to install packages from github
-remotes::install_github("UrbanInstitute/urbnmapr")
-install.packages("naniar")
-install.packages("ggiraph")
+# install.packages("sf")
+# install.packages("remotes") # used to install packages from github
+# remotes::install_github("UrbanInstitute/urbnmapr")
+# install.packages("naniar")
+# install.packages("ggiraph")
 ```
 
 Load packages (all of them).
@@ -180,6 +180,9 @@ Apply the relevant recoding for `services_d`
 
 ```{r}
 #| label: variable-recoding-services_d
+class(teds_d$freq1_d)
+summary(teds_d$freq1_d)
+
 
 
 
@@ -191,6 +194,17 @@ Apply the relevant recoding for the Reason for Discharge variable.
 
 ```{r}
 #| label: variable-recoding-reason
+
+teds_d <- teds_d %>%
+  mutate(freq1_d = recode(as.character(services_d),
+                          "1" = "Treatment completed ",
+                          "2" = "Dropped out of treatment ",
+                          "3" = "Terminated by facility ",
+                          "4" = "Transfered to another program or facility"
+                          "5" = "Incarcerated"
+                          "6" = "death"
+                          .missing = "unknown"),
+         reason = factor(reason))
 
 
 ```
@@ -209,6 +223,18 @@ Tips:
 
 ```{r}
 #| label: plots
+freq_p <- ggplot(data = teds_d, aes(x=fct_infreq(freq1_d)))+
+  geom_bar()+
+  labs(x= "Frequency of Use at Discharge")
+ggplotly(freq_p)
+
+freq_p <- ggplot(data = teds_d, aes(x=fct_infreq(services_d)))+
+  geom_bar()+
+  coord_flip()
+  labs(x= "Treatment Service")
+
+ggplotly(services_d)
+
 
 
 ```

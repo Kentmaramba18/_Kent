@@ -18,11 +18,13 @@ editor: visual
 # install.packages("skimr") # gives us neat summaries to skim
 # install.packages("plotly") # interactive visualizations!
 
+#install.packages("palmerpenguins")
+#install.packages("janitor")
+#install.packages("plotly")
 library(tidyverse) # tidyverse is a collection that includes tidyr, dplyr, ggplot2, and more!
 library(palmerpenguins)
 library(janitor)
 library(plotly)
-
 ```
 
 ![](https://allisonhorst.github.io/palmerpenguins/logo.png){width="15%"}
@@ -40,7 +42,7 @@ There are multiple options to read data into R
 
 ```{r, message=FALSE}
 
-penguins_data <- read_csv("data/penguins_lter.csv")
+penguins_data <- read_csv("data/penguins_data.csv")
 
 ```
 
@@ -126,7 +128,7 @@ The `skim()` function from the `skimr` package gives us a cool overview of the d
 
 ```{r, message=FALSE}
 
-summary(penguins_lter.csv)
+summary(penguins_data)
 head(penguins_data, 10)
 tail(penguins_data, 5)
 
@@ -260,13 +262,9 @@ ggplot(penguins_data), aes(x= flipper_length_mm, fill = species , shape = island
   - In the code chunk below create a **histogram** with `culmen_depth_mm` on the x axis and `color` by `species` using the data frame *penguins_data*. Give the plot the theme: `theme_bw()`. Assign a color palette with `scale_fill_viridis_d()`. Give the plot a title, subtitle and custom x and y axis titles.
 
 ```{r, message=FALSE, warning=FALSE}
-ggplot(penguins_data), aes(x= flipper_length_mm, fill = species)) +
+ggplot(penguins_data, aes(x= culmen_depth_mm, fill = species)) +
     geom_histogram() +
-    scale_fill_viridis_d(option="mako") +
-                        theme_bw +
-                        labs(title = "palmer penguins' flipper Length",
-                             subtitle = "three species obsrved on the three islands in the Palmer Archipelago", x = "flipper length(mm)", y = "Number of Penguins")
-  ggplotly(plotname)
+    theme_bw()
 
 ```
 
@@ -275,7 +273,10 @@ ggplot(penguins_data), aes(x= flipper_length_mm, fill = species)) +
   - In the code chunk below create a **scatter plot** with `culmen_depth_mm` on the x axis, `body_mass_g` on the y axis, and `color` by `species` using the data frame *penguins_data*. Give the plot the theme: `theme_bw()`. Assign a color palette with `scale_color_viridis_d(option = "mako")`. Give the plot a title, subtitle and custom x and y axis titles.
 
 ```{r, message=FALSE, warning=FALSE}
-
+ggplot(penguins_data, aes(x= culmen_depth_mm, y = body_mass_g, color + species)) +
+  geom_point() +
+  theme_minimal() 
+  
 
 
 ```
@@ -291,7 +292,11 @@ ggplot(penguins_data), aes(x= flipper_length_mm, fill = species)) +
     - Run `ggplotly(plot_name)` and explore! Edit `plot_name` accordingly
 
 ```{r, message=FALSE}
-
+ggplot(penguins_data, aes(x= culmen_depth_mm, fill = species)) +
+  geom_histogram() +
+  scale_color_viridis_d(option="turbo", name = "species") +
+  labs(title= "Palmer Penguins' Culmen Length", 
+       subtitle= "3 species pserved on the 3 islands")
 
 
 ```
